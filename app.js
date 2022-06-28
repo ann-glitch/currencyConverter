@@ -17,5 +17,18 @@ async function currency() {
   for (let i = 0; i < select.length; i++) {
     select[i].innerHTML = html;
   }
+
+  function convert(x, y) {
+    input[x].value =
+      (input[y].value * rates[select[x].value]) / rates[select[y].value];
+  }
+
+  input[0].addEventListener("keyup", () => convert(1, 0));
+
+  input[1].addEventListener("keyup", () => convert(0, 1));
+
+  select[0].addEventListener("change", () => convert(1, 0));
+
+  select[0].addEventListener("change", () => convert(0, 1));
 }
 currency();
